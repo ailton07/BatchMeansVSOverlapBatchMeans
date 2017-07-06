@@ -25,9 +25,10 @@ MersenneTwister mt;
 
 TimedQueue questao03();
 TimedQueue fase01();
-void NBM(TimedQueue queue);
+bool NBM(TimedQueue queue);
 
 double valorTeoricoDaMedia(double lambda, double mi);
+long double intervaloConfianca(vector<double> element, double waitAvg, double desvio);
 TimedQueue ExecMM1_Queue(TimedQueue queue, int exponent, float interArrivalMean, float serviceRateMean, int servers, bool listQueue);
 TimedQueue ExecMM1_Queue(int exponent, float interArrivalMean, float serviceRateMean, int servers, bool listQueue);
 
@@ -37,8 +38,9 @@ void obterInformacoesQueue(TimedQueue queue);
 
 vector<double> SWcoefficients(double B);
 
-double lambda = 9.5;
+double lambda = 9;
 int mi = 10;
+vector<double> _medias;
 
 // Adiciona 1000 elementos na queue e reprocessa
 TimedQueue aumentaQueue(TimedQueue original, int exponent) {
@@ -59,16 +61,46 @@ void printQueue(TimedQueue queue) {
 
 int main()
 {
-	TimedQueue queue;
+	int count = 0;
+	// Execucao do algoritmo NBM 100 vezes
+	for (int i = 0; i< 100; i++) {
+		printf("\n\n************************\n");
+		printf("Execucao da iteracao %d\n", i);
+		TimedQueue queue;
 
-	printf("\n\n************************\n");
-	printf("Execucao da Fase de Eliminacao Transiente\n");
-	queue = fase01();
+		printf("\n\n************************\n");
+		printf("Execucao da Fase de Eliminacao Transiente\n");
+		queue = fase01();
 
+		printf("\n************************\n");
+		printf("Execucao do NBM\n");
+		if (NBM(queue))
+			count++;
+	}
 
-	printf("\n\n************************\n");
-	printf("Execucao da Questao 05\n");
-	NBM(queue);
+	// Tratamento dos dados
+	printf("\nNumero de Acertos: %d\n", count);
+	double mediaBlocos = 0;
+	double desvio = 0;
+	double variacaoIC = 0;
+	// Calcula a media dos blocos
+	for (int i = 0; i < _medias.size(); i++) {
+		mediaBlocos = mediaBlocos + _medias[i];
+	}
+	mediaBlocos = mediaBlocos / _medias.size();
+
+	// Calcula do Desvio Padrao
+	desvio = desvioPadrao(_medias, mediaBlocos);
+	variacaoIC = intervaloConfianca(_medias, mediaBlocos, desvio);
+
+	long double h = variacaoIC;
+	// Obtem gama
+	long double gama = h / mediaBlocos;
+
+	printf("Media Global: %f\n", mediaBlocos);
+	printf("IC-: %f;\n", mediaBlocos - variacaoIC);
+	printf("IC+: %f;\n", mediaBlocos + variacaoIC);
+	printf("Precisao Relativa: %f;\n", gama);
 
 	system("pause");
 	return 0;
@@ -238,8 +270,10 @@ bool batchMeans(TimedQueue queue, int N, int M, int B) {
 			printf("IC-: %f;\n", mediaBlocos - variacaoIC);
 			printf("IC+: %f;\n", mediaBlocos + variacaoIC);
 			printf("Precisao Relativa: %f;\n", gama);
-			printf("\nCondicao de parada\n");
+			printf("Valor teorico: %f;\n", valorTeoricoDaMedia(lambda, mi));
 			printf("N = %d\tM = %d\tB = %d\n\n", N, M, B);
+			
+			_medias.push_back(mediaBlocos);
 
 			if (icInferior < valorTeoricoDaMedia(lambda, mi)
 				&& valorTeoricoDaMedia(lambda, mi) < icSuperior)
@@ -260,7 +294,7 @@ bool batchMeans(TimedQueue queue, int N, int M, int B) {
 }
 
 // Nonoverlapping Batch Means
-void NBM(TimedQueue queue) {
+bool NBM(TimedQueue queue) {
 	int N;
 	int B;
 	int M;
@@ -273,14 +307,14 @@ void NBM(TimedQueue queue) {
 		queue = aumentaQueue(queue, 3);
 	}
 
-	if (batchMeans(queue, N, M, B)) {
-		return;
-	}
+	return batchMeans(queue, N, M, B);
+	
 
 }
 
 // *******************************
-// Desenvolvimento para Questao 4
+// Desenvolvimento para Eliminacao da Fase
+// Transiente
 
 void obterInformacoesQueue(TimedQueue queue) {
 	// Media da espera
@@ -318,7 +352,8 @@ TimedQueue questao04DoJobForK(TimedQueue queue, int k) {
 
 	while (contadorTransicoes < k) {
 		vector<double> observacoes;
-		n = n + (queue.Size() / 100) + 1;
+		// n = n + (queue.Size() / 100) + 1;
+		n = n + 300;
 		// Incrementa tamanho da Queue
 		while (n >= queue.Size())
 			queue = aumentaQueue(queue, 2);
