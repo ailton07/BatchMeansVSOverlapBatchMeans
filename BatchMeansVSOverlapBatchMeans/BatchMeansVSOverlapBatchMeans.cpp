@@ -56,7 +56,7 @@ TimedQueue aumentaQueue(TimedQueue original, int exponent) {
 
 int main()
 {
-	// executaNBM();
+	//executaNBM();
 	executaOBM();
 
 	system("pause");
@@ -126,7 +126,7 @@ void executaOBM() {
 		queue = fase01();
 
 		printf("\n************************\n");
-		printf("Execucao do NBM\n");
+		printf("Execucao do OBM\n");
 		if (OBM(queue))
 			count++;
 	}
@@ -417,7 +417,7 @@ bool oBatchMeans(TimedQueue queue, int N, int M, int B) {
 		double alpha = 1 - 0.95;
 		double student = student_dist(1.5*(b - 1), alpha/2);
 
-		h = (desvio * student) / sqrt((b - 1));
+		h = (desvio * student) / sqrt((B - 1));
 
 		// Obtem gama
 		long double gama = h / mediaBlocos;
@@ -443,7 +443,10 @@ bool oBatchMeans(TimedQueue queue, int N, int M, int B) {
 				return false;
 		}
 		else {
-			M = 300 + M;
+			if (M < 1400)
+				M = 1400 + M;
+			else
+				M = 500 + M;
 			N = B * M;
 			while (N > queue.Size()) {
 				queue = aumentaQueue(queue, 4);
