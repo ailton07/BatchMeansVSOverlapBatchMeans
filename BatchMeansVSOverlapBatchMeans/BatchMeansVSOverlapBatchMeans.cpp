@@ -32,6 +32,7 @@ double valorTeoricoDaMedia(double lambda, double mi);
 long double intervaloConfianca(vector<double> element, double waitAvg, double desvio);
 TimedQueue ExecMM1_Queue(TimedQueue queue, int exponent, float interArrivalMean, float serviceRateMean, int servers, bool listQueue);
 TimedQueue ExecMM1_Queue(int exponent, float interArrivalMean, float serviceRateMean, int servers, bool listQueue);
+void tratamentoLista(vector<double> _mediasEspera);
 
 double desvioPadrao(vector<double> mediasBlocos, double waitAvg);
 
@@ -43,7 +44,9 @@ void executaOBM();
 
 double lambda = 5;
 int mi = 10;
-vector<double> _medias;
+vector<double> _mediasEspera;
+vector<double> _numeroElementos;
+vector<double> _numeroEliminados;
 
 // Adiciona 1000 elementos na queue e reprocessa
 TimedQueue aumentaQueue(TimedQueue original, int exponent) {
@@ -90,14 +93,14 @@ void executaNBM() {
 	double desvio = 0;
 	double variacaoIC = 0;
 	// Calcula a media dos blocos
-	for (int i = 0; i < _medias.size(); i++) {
-		mediaBlocos = mediaBlocos + _medias[i];
+	for (int i = 0; i < _mediasEspera.size(); i++) {
+		mediaBlocos = mediaBlocos + _mediasEspera[i];
 	}
-	mediaBlocos = mediaBlocos / _medias.size();
+	mediaBlocos = mediaBlocos / _mediasEspera.size();
 
 	// Calcula do Desvio Padrao
-	desvio = desvioPadrao(_medias, mediaBlocos);
-	variacaoIC = intervaloConfianca(_medias, mediaBlocos, desvio);
+	desvio = desvioPadrao(_mediasEspera, mediaBlocos);
+	variacaoIC = intervaloConfianca(_mediasEspera, mediaBlocos, desvio);
 
 	long double h = variacaoIC;
 	// Obtem gama
@@ -133,27 +136,12 @@ void executaOBM() {
 
 	// Tratamento dos dados
 	printf("\nNumero de Acertos: %d\n", count);
-	double mediaBlocos = 0;
-	double desvio = 0;
-	double variacaoIC = 0;
-	// Calcula a media dos blocos
-	for (int i = 0; i < _medias.size(); i++) {
-		mediaBlocos = mediaBlocos + _medias[i];
-	}
-	mediaBlocos = mediaBlocos / _medias.size();
-
-	// Calcula do Desvio Padrao
-	desvio = desvioPadrao(_medias, mediaBlocos);
-	variacaoIC = intervaloConfianca(_medias, mediaBlocos, desvio);
-
-	long double h = variacaoIC;
-	// Obtem gama
-	long double gama = h / mediaBlocos;
-
-	printf("Media Global: %f\n", mediaBlocos);
-	printf("IC-: %f;\n", mediaBlocos - variacaoIC);
-	printf("IC+: %f;\n", mediaBlocos + variacaoIC);
-	printf("Precisao Relativa: %f;\n", gama);
+	printf("_mediasEspera\n");
+	tratamentoLista(_mediasEspera);
+	printf("_mediasElementos\n");
+	tratamentoLista(_numeroElementos);
+	printf("_mediasEliminados\n");
+	tratamentoLista(_numeroEliminados);
 
 }
 
@@ -162,6 +150,28 @@ void printQueue(TimedQueue queue) {
 		printf("%f, ", queue[i].waitTime);
 	}
 	printf("\n\n");
+}
+
+void tratamentoLista(vector<double> _mediasEspera) {
+	double mediaBlocos = 0;
+	double desvio = 0;
+	double variacaoIC = 0;
+	// Calcula a media dos blocos
+	for (int i = 0; i < _mediasEspera.size(); i++) {
+		mediaBlocos = mediaBlocos + _mediasEspera[i];
+	}
+	mediaBlocos = mediaBlocos / _mediasEspera.size();
+	// Calcula do Desvio Padrao
+	desvio = desvioPadrao(_mediasEspera, mediaBlocos);
+	variacaoIC = intervaloConfianca(_mediasEspera, mediaBlocos, desvio);
+	long double h = variacaoIC;
+	// Obtem gama
+	long double gama = h / mediaBlocos;
+	printf("Media Global: %f\n", mediaBlocos);
+	printf("IC-: %f;\n", mediaBlocos - variacaoIC);
+	printf("IC+: %f;\n", mediaBlocos + variacaoIC);
+	printf("Precisao Relativa: %f;\n", gama);
+
 }
 
 
@@ -330,7 +340,7 @@ bool batchMeans(TimedQueue queue, int N, int M, int B) {
 			printf("Valor teorico: %f;\n", valorTeoricoDaMedia(lambda, mi));
 			printf("N = %d\tM = %d\tB = %d\n\n", N, M, B);
 			
-			_medias.push_back(mediaBlocos);
+			_mediasEspera.push_back(mediaBlocos);
 
 			if (icInferior < valorTeoricoDaMedia(lambda, mi)
 				&& valorTeoricoDaMedia(lambda, mi) < icSuperior)
@@ -417,7 +427,7 @@ bool oBatchMeans(TimedQueue queue, int N, int M, int B) {
 		double alpha = 1 - 0.95;
 		double student = student_dist(1.5*(b - 1), alpha/2);
 
-		h = (desvio * student) / sqrt((B - 1));
+		h = (desvio * student) / sqrt((b - 1));
 
 		// Obtem gama
 		long double gama = h / mediaBlocos;
@@ -434,7 +444,8 @@ bool oBatchMeans(TimedQueue queue, int N, int M, int B) {
 			printf("Valor teorico: %f;\n", valorTeoricoDaMedia(lambda, mi));
 			printf("N = %d\tM = %d\tB = %d\n\n", N, M, B);
 
-			_medias.push_back(mediaBlocos);
+			_mediasEspera.push_back(mediaBlocos);
+			_numeroElementos.push_back(N);
 
 			if (icInferior < valorTeoricoDaMedia(lambda, mi)
 				&& valorTeoricoDaMedia(lambda, mi) < icSuperior)
@@ -513,6 +524,8 @@ void obterInformacoesQueue(TimedQueue queue) {
 TimedQueue podaQueueEObtemInformacoes(TimedQueue queue, int j) {
 	// Remove os J primeiros elementos
 	queue.RemoveElements(j);
+	// Lista de elementos eliminados
+	_numeroEliminados.push_back(j);
 
 	// Recalcula Media
 	queue.ProcessQueue();
