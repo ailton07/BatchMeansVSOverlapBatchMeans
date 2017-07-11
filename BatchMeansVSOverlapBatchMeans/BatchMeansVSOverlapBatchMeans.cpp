@@ -42,7 +42,7 @@ vector<double> SWcoefficients(double B);
 void executaNBM();
 void executaOBM();
 
-double lambda = 5;
+double lambda = 9;
 int mi = 10;
 vector<double> _mediasEspera;
 vector<double> _numeroElementos;
@@ -59,8 +59,8 @@ TimedQueue aumentaQueue(TimedQueue original, int exponent) {
 
 int main()
 {
-	//executaNBM();
-	executaOBM();
+	executaNBM();
+	//executaOBM();
 
 	system("pause");
 	return 0;
@@ -94,30 +94,6 @@ void executaNBM() {
 	tratamentoLista(_numeroElementos);
 	printf("_mediasEliminados\n");
 	tratamentoLista(_numeroEliminados);
-	//// Tratamento dos dados
-	//printf("\nNumero de Acertos: %d\n", count);
-	//double mediaBlocos = 0;
-	//double desvio = 0;
-	//double variacaoIC = 0;
-	//// Calcula a media dos blocos
-	//for (int i = 0; i < _mediasEspera.size(); i++) {
-	//	mediaBlocos = mediaBlocos + _mediasEspera[i];
-	//}
-	//mediaBlocos = mediaBlocos / _mediasEspera.size();
-
-	//// Calcula do Desvio Padrao
-	//desvio = desvioPadrao(_mediasEspera, mediaBlocos);
-	//variacaoIC = intervaloConfianca(_mediasEspera, mediaBlocos, desvio);
-
-	//long double h = variacaoIC;
-	//// Obtem gama
-	//long double gama = h / mediaBlocos;
-
-	//printf("Media Global: %f\n", mediaBlocos);
-	//printf("IC-: %f;\n", mediaBlocos - variacaoIC);
-	//printf("IC+: %f;\n", mediaBlocos + variacaoIC);
-	//printf("Precisao Relativa: %f;\n", gama);
-
 }
 
 // Executa Nonoverlapping Batch Means
