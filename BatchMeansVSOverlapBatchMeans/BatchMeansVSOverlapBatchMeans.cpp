@@ -86,30 +86,37 @@ void executaNBM() {
 		if (NBM(queue))
 			count++;
 	}
-
 	// Tratamento dos dados
 	printf("\nNumero de Acertos: %d\n", count);
-	double mediaBlocos = 0;
-	double desvio = 0;
-	double variacaoIC = 0;
-	// Calcula a media dos blocos
-	for (int i = 0; i < _mediasEspera.size(); i++) {
-		mediaBlocos = mediaBlocos + _mediasEspera[i];
-	}
-	mediaBlocos = mediaBlocos / _mediasEspera.size();
+	printf("_mediasEspera\n");
+	tratamentoLista(_mediasEspera);
+	printf("_mediasElementos\n");
+	tratamentoLista(_numeroElementos);
+	printf("_mediasEliminados\n");
+	tratamentoLista(_numeroEliminados);
+	//// Tratamento dos dados
+	//printf("\nNumero de Acertos: %d\n", count);
+	//double mediaBlocos = 0;
+	//double desvio = 0;
+	//double variacaoIC = 0;
+	//// Calcula a media dos blocos
+	//for (int i = 0; i < _mediasEspera.size(); i++) {
+	//	mediaBlocos = mediaBlocos + _mediasEspera[i];
+	//}
+	//mediaBlocos = mediaBlocos / _mediasEspera.size();
 
-	// Calcula do Desvio Padrao
-	desvio = desvioPadrao(_mediasEspera, mediaBlocos);
-	variacaoIC = intervaloConfianca(_mediasEspera, mediaBlocos, desvio);
+	//// Calcula do Desvio Padrao
+	//desvio = desvioPadrao(_mediasEspera, mediaBlocos);
+	//variacaoIC = intervaloConfianca(_mediasEspera, mediaBlocos, desvio);
 
-	long double h = variacaoIC;
-	// Obtem gama
-	long double gama = h / mediaBlocos;
+	//long double h = variacaoIC;
+	//// Obtem gama
+	//long double gama = h / mediaBlocos;
 
-	printf("Media Global: %f\n", mediaBlocos);
-	printf("IC-: %f;\n", mediaBlocos - variacaoIC);
-	printf("IC+: %f;\n", mediaBlocos + variacaoIC);
-	printf("Precisao Relativa: %f;\n", gama);
+	//printf("Media Global: %f\n", mediaBlocos);
+	//printf("IC-: %f;\n", mediaBlocos - variacaoIC);
+	//printf("IC+: %f;\n", mediaBlocos + variacaoIC);
+	//printf("Precisao Relativa: %f;\n", gama);
 
 }
 
@@ -341,6 +348,7 @@ bool batchMeans(TimedQueue queue, int N, int M, int B) {
 			printf("N = %d\tM = %d\tB = %d\n\n", N, M, B);
 			
 			_mediasEspera.push_back(mediaBlocos);
+			_numeroElementos.push_back(N);
 
 			if (icInferior < valorTeoricoDaMedia(lambda, mi)
 				&& valorTeoricoDaMedia(lambda, mi) < icSuperior)
