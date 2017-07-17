@@ -425,9 +425,9 @@ bool oBatchMeans(TimedQueue queue, int N, int M, int B) {
 		// Calculo da largura do intervalo de confianca
 		long double h;
 		double alpha = 1 - 0.95;
-		double student = student_dist(1.5*(b - 1), alpha/2);
+		double student = student_dist(1.5*(b - 1), alpha);
 
-		h = (desvio * student) / sqrt((b - 1));
+		h = (desvio * student) / sqrt((B));
 
 		// Obtem gama
 		long double gama = h / mediaBlocos;
@@ -455,9 +455,17 @@ bool oBatchMeans(TimedQueue queue, int N, int M, int B) {
 		}
 		else {
 			if (M < 1400)
+				// Usado ate load 0.5
 				M = 1400 + M;
+				// M = 14000 + M;
+				// Usado ate load 0.9
+				//M = 34000 + M;
 			else
+				// Usado ate load 0.5
 				M = 500 + M;
+				// Usado ate load 0.9
+				//M = 5000 + M;
+
 			N = B * M;
 			while (N > queue.Size()) {
 				queue = aumentaQueue(queue, 4);
