@@ -1,4 +1,5 @@
 ﻿  BatchMeansVSOverlapBatchMeans.cpp
+<<<<<<< HEAD
 c:\users\ailton\documents\github\batchmeansvsoverlapbatchmeans\batchmeansvsoverlapbatchmeans\batchmeansvsoverlapbatchmeans\batchmeansvsoverlapbatchmeans.cpp(55): warning C4244: 'argumento': conversão de 'int' para 'float', possível perda de dados
 c:\users\ailton\documents\github\batchmeansvsoverlapbatchmeans\batchmeansvsoverlapbatchmeans\batchmeansvsoverlapbatchmeans\batchmeansvsoverlapbatchmeans.cpp(55): warning C4244: 'argumento': conversão de 'double' para 'float', possível perda de dados
 c:\users\ailton\documents\github\batchmeansvsoverlapbatchmeans\batchmeansvsoverlapbatchmeans\batchmeansvsoverlapbatchmeans\batchmeansvsoverlapbatchmeans.cpp(96): warning C4018: '<': incompatibilidade de signed/unsigned
@@ -27,3 +28,32 @@ c:\users\ailton\documents\github\batchmeansvsoverlapbatchmeans\batchmeansvsoverl
 c:\users\ailton\documents\github\batchmeansvsoverlapbatchmeans\batchmeansvsoverlapbatchmeans\batchmeansvsoverlapbatchmeans\batchmeansvsoverlapbatchmeans.cpp(766): warning C4244: 'inicializando': conversão de 'double' para 'int', possível perda de dados
   BatchMeansVSOverlapBatchMeans.vcxproj -> C:\Users\Ailton\Documents\GitHub\BatchMeansVSOverlapBatchMeans\BatchMeansVSOverlapBatchMeans\Debug\BatchMeansVSOverlapBatchMeans.exe
   BatchMeansVSOverlapBatchMeans.vcxproj -> C:\Users\Ailton\Documents\GitHub\BatchMeansVSOverlapBatchMeans\BatchMeansVSOverlapBatchMeans\Debug\BatchMeansVSOverlapBatchMeans.pdb (Partial PDB)
+=======
+c:\users\ailto\documents\github\batchmeansvsoverlapbatchmeans\batchmeansvsoverlapbatchmeans\batchmeansvsoverlapbatchmeans.cpp(55): warning C4244: 'argumento': conversão de 'int' para 'float', possível perda de dados
+c:\users\ailto\documents\github\batchmeansvsoverlapbatchmeans\batchmeansvsoverlapbatchmeans\batchmeansvsoverlapbatchmeans.cpp(55): warning C4244: 'argumento': conversão de 'double' para 'float', possível perda de dados
+c:\users\ailto\documents\github\batchmeansvsoverlapbatchmeans\batchmeansvsoverlapbatchmeans\batchmeansvsoverlapbatchmeans.cpp(143): warning C4018: '<': incompatibilidade de signed/unsigned
+c:\users\ailto\documents\github\batchmeansvsoverlapbatchmeans\batchmeansvsoverlapbatchmeans\batchmeansvsoverlapbatchmeans.cpp(172): warning C4018: '<': incompatibilidade de signed/unsigned
+c:\users\ailto\documents\github\batchmeansvsoverlapbatchmeans\batchmeansvsoverlapbatchmeans\batchmeansvsoverlapbatchmeans.cpp(173): warning C4018: '<': incompatibilidade de signed/unsigned
+c:\users\ailto\documents\github\batchmeansvsoverlapbatchmeans\batchmeansvsoverlapbatchmeans\batchmeansvsoverlapbatchmeans.cpp(187): warning C4018: '<': incompatibilidade de signed/unsigned
+c:\users\ailto\documents\github\batchmeansvsoverlapbatchmeans\batchmeansvsoverlapbatchmeans\batchmeansvsoverlapbatchmeans.cpp(194): warning C4018: '<': incompatibilidade de signed/unsigned
+c:\users\ailto\documents\github\batchmeansvsoverlapbatchmeans\batchmeansvsoverlapbatchmeans\batchmeansvsoverlapbatchmeans.cpp(199): warning C4018: '<': incompatibilidade de signed/unsigned
+c:\users\ailto\documents\github\batchmeansvsoverlapbatchmeans\batchmeansvsoverlapbatchmeans\batchmeansvsoverlapbatchmeans.cpp(217): warning C4018: '<': incompatibilidade de signed/unsigned
+c:\users\ailto\documents\github\batchmeansvsoverlapbatchmeans\batchmeansvsoverlapbatchmeans\batchmeansvsoverlapbatchmeans.cpp(300): warning C4018: '<': incompatibilidade de signed/unsigned
+c:\users\ailto\documents\github\batchmeansvsoverlapbatchmeans\batchmeansvsoverlapbatchmeans\batchmeansvsoverlapbatchmeans.cpp(401): warning C4018: '<': incompatibilidade de signed/unsigned
+c:\users\ailto\documents\github\batchmeansvsoverlapbatchmeans\batchmeansvsoverlapbatchmeans\batchmeansvsoverlapbatchmeans.cpp(412): warning C4244: 'argumento': conversão de 'double' para 'int', possível perda de dados
+c:\users\ailto\documents\github\batchmeansvsoverlapbatchmeans\batchmeansvsoverlapbatchmeans\batchmeansvsoverlapbatchmeans.cpp(591): warning C4244: 'argumento': conversão de 'int' para 'float', possível perda de dados
+c:\users\ailto\documents\github\batchmeansvsoverlapbatchmeans\batchmeansvsoverlapbatchmeans\batchmeansvsoverlapbatchmeans.cpp(591): warning C4244: 'argumento': conversão de 'double' para 'float', possível perda de dados
+c:\users\ailto\documents\github\batchmeansvsoverlapbatchmeans\batchmeansvsoverlapbatchmeans\batchmeansvsoverlapbatchmeans.cpp(592): warning C4244: '=': conversão de 'double' para 'int', possível perda de dados
+c:\users\ailto\documents\github\batchmeansvsoverlapbatchmeans\batchmeansvsoverlapbatchmeans\batchmeansvsoverlapbatchmeans.cpp(610): warning C4244: '=': conversão de 'double' para 'int', possível perda de dados
+c:\users\ailto\documents\github\batchmeansvsoverlapbatchmeans\batchmeansvsoverlapbatchmeans\batchmeansvsoverlapbatchmeans.cpp(644): warning C4244: 'inicializando': conversão de 'std::chrono::system_clock::rep' para 'unsigned int', possível perda de dados
+c:\users\ailto\documents\github\batchmeansvsoverlapbatchmeans\batchmeansvsoverlapbatchmeans\batchmeansvsoverlapbatchmeans.cpp(648): warning C4244: 'inicializando': conversão de 'double' para 'int', possível perda de dados
+c:\users\ailto\documents\github\batchmeansvsoverlapbatchmeans\batchmeansvsoverlapbatchmeans\batchmeansvsoverlapbatchmeans.cpp(657): warning C4244: 'argumento': conversão de 'double' para 'int', possível perda de dados
+c:\users\ailto\documents\github\batchmeansvsoverlapbatchmeans\batchmeansvsoverlapbatchmeans\batchmeansvsoverlapbatchmeans.cpp(673): warning C4244: 'argumento': conversão de 'double' para 'float', possível perda de dados
+c:\users\ailto\documents\github\batchmeansvsoverlapbatchmeans\batchmeansvsoverlapbatchmeans\batchmeansvsoverlapbatchmeans.cpp(673): warning C4244: 'argumento': conversão de 'double' para 'int', possível perda de dados
+c:\users\ailto\documents\github\batchmeansvsoverlapbatchmeans\batchmeansvsoverlapbatchmeans\batchmeansvsoverlapbatchmeans.cpp(694): warning C4244: 'inicializando': conversão de 'std::chrono::system_clock::rep' para 'unsigned int', possível perda de dados
+c:\users\ailto\documents\github\batchmeansvsoverlapbatchmeans\batchmeansvsoverlapbatchmeans\batchmeansvsoverlapbatchmeans.cpp(698): warning C4244: 'inicializando': conversão de 'double' para 'int', possível perda de dados
+c:\users\ailto\documents\github\batchmeansvsoverlapbatchmeans\batchmeansvsoverlapbatchmeans\batchmeansvsoverlapbatchmeans.cpp(721): warning C4244: 'argumento': conversão de 'double' para 'float', possível perda de dados
+c:\users\ailto\documents\github\batchmeansvsoverlapbatchmeans\batchmeansvsoverlapbatchmeans\batchmeansvsoverlapbatchmeans.cpp(742): warning C4244: 'inicializando': conversão de 'double' para 'int', possível perda de dados
+  BatchMeansVSOverlapBatchMeans.vcxproj -> C:\Users\ailto\Documents\GitHub\BatchMeansVSOverlapBatchMeans\Debug\BatchMeansVSOverlapBatchMeans.exe
+  BatchMeansVSOverlapBatchMeans.vcxproj -> C:\Users\ailto\Documents\GitHub\BatchMeansVSOverlapBatchMeans\Debug\BatchMeansVSOverlapBatchMeans.pdb (Partial PDB)
+>>>>>>> master
